@@ -25,6 +25,7 @@ public class NyxPointsCommand implements CommandExecutor{
 				sender instanceof Player) {
 			
 			Player player = (Player) sender;
+			Inventory shop = Bukkit.createInventory(null, 9, "Shop");
 			Integer pointamount = plugin.pointData.get(player.getUniqueId());
 			
 			if(args.length == 1) {
@@ -34,17 +35,34 @@ public class NyxPointsCommand implements CommandExecutor{
 			}
 			if(args.length == 1) {
 				if(args[0].equalsIgnoreCase("shop") || args[0].equalsIgnoreCase("s")) {
+					player.openInventory(shop);
 					
+					//Items
+					//common key
+					ItemStack commonKey = new ItemStack(Material.TRIPWIRE_HOOK);
+					ItemMeta commonKeyMeta = commonKey.getItemMeta();
+					commonKeyMeta.setDisplayName("" + ChatColor.BOLD + ChatColor.WHITE + "Common Dungeon Key");
+					commonKeyMeta.setLore(Arrays.asList(ChatColor.GRAY + "Price: ", ChatColor.GRAY + "2"));
+					commonKey.setItemMeta(commonKeyMeta);
+					shop.setItem(0, commonKey);
+					//uncommon key
+					ItemStack uncommonKey = new ItemStack(Material.TRIPWIRE_HOOK);
+					ItemMeta uncommonKeyMeta = uncommonKey.getItemMeta();
+					uncommonKeyMeta.setDisplayName("" + ChatColor.BOLD + ChatColor.GREEN + "Uncommon Dungeon Key");
+					uncommonKeyMeta.setLore(Arrays.asList(ChatColor.GRAY + "Price: ", ChatColor.GRAY + "2"));
+					uncommonKey.setItemMeta(uncommonKeyMeta);
+					shop.setItem(1, uncommonKey);
+					//rare key
+					ItemStack rareKey = new ItemStack(Material.TRIPWIRE_HOOK);
+					ItemMeta rareKeyMeta = rareKey.getItemMeta();
+					rareKeyMeta.setDisplayName("" + ChatColor.BOLD + ChatColor.BLUE + "Rare Dungeon Key");
+					rareKeyMeta.setLore(Arrays.asList(ChatColor.GRAY + "Price: ", ChatColor.GRAY + "2"));
+					rareKey.setItemMeta(rareKeyMeta);
+					shop.setItem(1, rareKey);
+					
+					return true;
 				}
 			}
-			
-			ItemStack commonKey = new ItemStack(Material.TRIPWIRE_HOOK);
-			ItemMeta commonKeyMeta = commonKey.getItemMeta();
-			commonKeyMeta.setDisplayName("" + ChatColor.BOLD + ChatColor.WHITE + "Common Dungeon Key");
-			commonKeyMeta.setLore(Arrays.asList(ChatColor.GRAY + "Price: ", ChatColor.GRAY + "2"));
-			commonKey.setItemMeta(commonKeyMeta);
-			Inventory shop = Bukkit.createInventory(null, 9, "Shop");
-			shop.setItem(1, commonKey);
 			}
 			
 		return false;	
