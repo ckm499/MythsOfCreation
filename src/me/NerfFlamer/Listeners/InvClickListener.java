@@ -1,11 +1,12 @@
-package me.NerfFlamer;
+package me.NerfFlamer.Listeners;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class InvClickEvent implements Listener {
+public class InvClickListener implements Listener{
 	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
@@ -36,11 +37,13 @@ public class InvClickEvent implements Listener {
 					.getInt("NyxPoints");
 			Integer price = Integer.parseInt(e.getCurrentItem().getItemMeta().getLore().get(1).substring(2));
 			if(pointamount >= price) {
-				ItemStack commonKey = new ItemStack(Material.TRIPWIRE_HOOK);
-				ItemMeta commonKeyMeta = commonKey.getItemMeta();
-				commonKeyMeta.setDisplayName("" + ChatColor.BOLD
-						+ ChatColor.WHITE + "Common Dungeon Key");
-				commonKey.setItemMeta(commonKeyMeta);
+				ItemStack item = e.getCurrentItem();
+				List<String> lore = new ArrayList<String>();
+				lore.add(ChatColor.GRAY + "Use this key to");
+				lore.add(ChatColor.GRAY + "unlock a dungeon");
+				ItemMeta iMeta = e.getCurrentItem().getItemMeta();
+				iMeta.setLore(lore);
+				item.setItemMeta(iMeta);
 				if (player.getInventory().firstEmpty() != -1)
 				{
 					YamlConfiguration temp = new YamlConfiguration();
@@ -61,10 +64,10 @@ public class InvClickEvent implements Listener {
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-					player.sendMessage(ChatColor.GREEN + "You have successfully purchased a Common Dungeon Key!");
-					player.sendMessage(ChatColor.AQUA + "New Point Balance : " + (pointamount-price));
+					player.sendMessage(ChatColor.GOLD + "You have successfully purchased a Common Dungeon Key!");
+					player.sendMessage(ChatColor.YELLOW + "New Point Balance : " + (pointamount-price));
 					player.closeInventory();
-					player.getInventory().addItem(commonKey);
+					player.getInventory().addItem(item);
 					return;
 				}
 				player.closeInventory();

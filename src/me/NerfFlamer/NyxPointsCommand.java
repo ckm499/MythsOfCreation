@@ -16,9 +16,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class NyxPointsCommand implements CommandExecutor {
+	
+	public NyxPointsCommand()
+	{
+		Main.getInstance().getCommand("nyxpoints").setExecutor(this);
+		Main.getInstance().getCommand("nyxpoint").setExecutor(this);
+		Main.getInstance().getCommand("np").setExecutor(this);
+	}
 
-	Main plugin = Main.hook();
-
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 
@@ -30,7 +36,7 @@ public class NyxPointsCommand implements CommandExecutor {
 			Player player = (Player) sender;
 			Integer pointamount = YamlConfiguration.loadConfiguration(
 					new File("plugins" + File.separator + "NyxPoints"
-							+ File.separator + player.getUniqueId() + ".yml"))
+							+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml"))
 					.getInt("NyxPoints");
 			if(args.length == 0)
 			{
@@ -56,7 +62,7 @@ public class NyxPointsCommand implements CommandExecutor {
 						ChatColor.GRAY + "2"));
 				commonKey.setItemMeta(commonKeyMeta);
 				Inventory shop = Bukkit.createInventory(null, 9, "Shop");
-				shop.setItem(1, commonKey);
+				shop.setItem(0, commonKey);
 				player.openInventory(shop);
 				return true;
 			}
