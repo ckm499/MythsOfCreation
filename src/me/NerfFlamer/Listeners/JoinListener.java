@@ -21,7 +21,7 @@ public class JoinListener implements Listener {
 			temp.createSection("class");
 			temp.createSection("NyxPoints");
 			temp.createSection("perks");
-			temp.createSection("kits");
+			temp.createSection("kitTime");
 			temp.createSection("perms");
 			temp.set("name", e.getPlayer().getDisplayName());
 			temp.set("class", "none");

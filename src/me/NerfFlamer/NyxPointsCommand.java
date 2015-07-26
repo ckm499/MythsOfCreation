@@ -20,7 +20,6 @@ public class NyxPointsCommand implements CommandExecutor {
 	public NyxPointsCommand()
 	{
 		Main.getInstance().getCommand("nyxpoints").setExecutor(this);
-		Main.getInstance().getCommand("nyxpoint").setExecutor(this);
 		Main.getInstance().getCommand("np").setExecutor(this);
 	}
 
@@ -30,7 +29,6 @@ public class NyxPointsCommand implements CommandExecutor {
 
 		if (cmd.getName().equalsIgnoreCase("nyxpoints")
 				|| cmd.getName().equalsIgnoreCase("np")
-				|| cmd.getName().equalsIgnoreCase("nyxpoint")
 				&& sender instanceof Player) {
 
 			Player player = (Player) sender;
@@ -65,6 +63,10 @@ public class NyxPointsCommand implements CommandExecutor {
 				shop.setItem(0, commonKey);
 				player.openInventory(shop);
 				return true;
+			}
+			if (args[0].equalsIgnoreCase("kit"))
+			{
+				player.sendMessage(Main.getInstance().classes.get(0).getKit().get(0) + " " + Main.getInstance().classes.get(0).getKit().get(1));
 			}
 		}
 

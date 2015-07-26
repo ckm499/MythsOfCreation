@@ -1,0 +1,7 @@
+Classes:
+    TestClass:
+        Perks:
+        - Feed
+        Kit:
+          - WOOD 2
+          - LOG 3
