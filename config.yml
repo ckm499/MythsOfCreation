@@ -1,14 +1,14 @@
 Classes:
-    TestClass:
-        Perks:
-        - Feed
-        Kit:
-          - WOOD 2
-          - LOG 3
+    #NameOfClass:
+        #Perks:
+        #- Feed
+        #Kit:
+          #- WOOD 2
+          #- LOG 3
     Kronos:
         Perks:
         - Time
-        - Ptime
+        - Playertime
         - Weather
         - Back
         Kit:
@@ -16,7 +16,30 @@ Classes:
           - COMPASS 1
           - IRON_SWORD 1
           - GOLD_HELMET 1
-          - LEATHER_CHESTPLACE 1
+          - IRON_CHESTPLATE 1
           - GOLD_LEGGINGS 1
-          - LEATHER_BOOTS 1
-    ##Delete this and begin class 
+          - IRON_BOOTS 1
+    Hephaestus:
+        Perks:
+        - Anvil
+        - Craft
+        - Ignite
+        - Grenade
+        Kit:
+          - ANVIL 3
+          - IRON_PICKAXE 1
+          - IRON_AXE 1
+          - IRON_SHOVEL 1
+          - DIAMOND_HELMET 1
+          - IRON_CHESTPLATE 1
+          - IRON_LEGGINGS 1
+          - DIAMOND_BOOTS 1
+          - FLINT_AND_STEEL 1
+          - OBSIDIAN 2
+          - TORCH 64
+          - IRON_BARS 32
+          - IRON_INGOT 16
+          - GOLD_INGOT 8
+          - COAL 32
+          - IRON_BLOCK 1
+    # placeholder for next class
