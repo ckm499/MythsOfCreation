@@ -50,14 +50,11 @@ public class ClassCommand implements CommandExecutor {
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("list")) {
-					String cl = "";
+					player.sendMessage(ChatColor.GOLD + "Classes:");
 					for (Classes c : Main.getInstance().classes)
 					{
-						cl = cl + " " + c.getName();
+						player.sendMessage(ChatColor.YELLOW + c.getName());
 					}
-					player.sendMessage(ChatColor.GOLD + "Classes: "
-							+ ChatColor.YELLOW
-							+ cl);
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("leave")) {
@@ -107,6 +104,9 @@ public class ClassCommand implements CommandExecutor {
 								e2.printStackTrace();
 							}
 							temp.set("class", (args[1]));
+							List<String> p = new ArrayList<String>();
+							p = Main.getInstance().getConfig().getStringList("Classes." + args[2] + ".Perks");
+							temp.set("perks", p);
 							try {
 								temp.save("plugins" + File.separator
 										+ "NyxPoints" + File.separator
