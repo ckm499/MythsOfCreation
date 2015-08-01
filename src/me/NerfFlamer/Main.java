@@ -28,8 +28,9 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new InvClickListener(), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		new NyxPointsCommand();
+		new ClassCommand();
 		this.saveDefaultConfig();
-		classes.add(new Classes("None"));
+		classes.add(new Classes("none"));
 		initializeClasses();
 	}
 	
@@ -81,14 +82,25 @@ public class Main extends JavaPlugin {
 		String name = YamlConfiguration.loadConfiguration(
 				new File("plugins" + File.separator + "NyxPoints"
 						+ File.separator + "PlayerData" + File.separator + p.getUniqueId() + ".yml"))
-				.getString("Class");
+				.getString("class");
 		for (Classes c : classes)
 		{
-			if (c.getName().equals(name))
+			if (c.getName().equalsIgnoreCase(name))
 			{
 				return c;
 			}
 		}
 		return classes.get(0);
+	}
+	public boolean checkForClass(String c)
+	{
+		for (Classes cl : classes)
+		{
+			if (cl.getName().equalsIgnoreCase(c))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

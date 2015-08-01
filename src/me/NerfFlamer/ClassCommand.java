@@ -27,10 +27,10 @@ public class ClassCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		Player player = (Player) sender;
-		if (cmd.getName().equalsIgnoreCase("class")
-				|| cmd.getName().equalsIgnoreCase("c")
+		if ((cmd.getName().equalsIgnoreCase("class")
+				|| cmd.getName().equalsIgnoreCase("c"))
 				&& sender instanceof Player) {
-			
+
 			if (args.length == 0) {
 				player.sendMessage(ChatColor.RED
 						+ "Not enough arguments! Usage: /class (args)");
@@ -49,11 +49,88 @@ public class ClassCommand implements CommandExecutor {
 							+ Main.getInstance().getClass(player).getName());
 					return true;
 				}
+				if (args[0].equalsIgnoreCase("list")) {
+					String cl = "";
+					for (Classes c : Main.getInstance().classes)
+					{
+						cl = cl + " " + c.getName();
+					}
+					player.sendMessage(ChatColor.GOLD + "Classes: "
+							+ ChatColor.YELLOW
+							+ cl);
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("leave")) {
+					YamlConfiguration temp = new YamlConfiguration();
+					try {
+						temp.load(new File("plugins" + File.separator
+								+ "NyxPoints" + File.separator
+								+ "PlayerData" + File.separator
+								+ player.getUniqueId() + ".yml"));
+					} catch (FileNotFoundException e2) {
+						e2.printStackTrace();
+					} catch (IOException e2) {
+						e2.printStackTrace();
+					} catch (InvalidConfigurationException e2) {
+						e2.printStackTrace();
+					}
+					temp.set("class", "none");
+					List<String> p = new ArrayList<String>();
+					temp.set("perks", p);
+					try {
+						temp.save("plugins" + File.separator
+								+ "NyxPoints" + File.separator
+								+ "PlayerData" + File.separator
+								+ player.getUniqueId() + ".yml");
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					return true;
+				}
+			}
+			if (args.length == 2) {
+				if (args[0].equalsIgnoreCase("join")
+						|| args[0].equalsIgnoreCase("j")) {
+					if (Main.getInstance().checkForClass(args[1])) {
+						YamlConfiguration temp = new YamlConfiguration();
+						if (Main.getInstance().getClass(player).getName().equalsIgnoreCase("none")) {
+							try {
+								temp.load(new File("plugins" + File.separator
+										+ "NyxPoints" + File.separator
+										+ "PlayerData" + File.separator
+										+ player.getUniqueId() + ".yml"));
+							} catch (FileNotFoundException e2) {
+								e2.printStackTrace();
+							} catch (IOException e2) {
+								e2.printStackTrace();
+							} catch (InvalidConfigurationException e2) {
+								e2.printStackTrace();
+							}
+							temp.set("class", (args[1]));
+							try {
+								temp.save("plugins" + File.separator
+										+ "NyxPoints" + File.separator
+										+ "PlayerData" + File.separator
+										+ player.getUniqueId() + ".yml");
+							} catch (IOException e1) {
+								e1.printStackTrace();
+							}
+							return true;
+						}
+						else {
+							player.sendMessage(ChatColor.DARK_RED + "You must leave your current class first! /class leave");
+							return true;
+						}
+					} else {
+						player.sendMessage(ChatColor.DARK_RED
+								+ "Class does not exist! View classes with /class list");
+						return true;
+					}
+				}
 			}
 			return false;
 		}
-		if (cmd.getName().equalsIgnoreCase("ckit"))
-		{
+		if (cmd.getName().equalsIgnoreCase("ckit")) {
 			kit(player);
 			return true;
 		}
@@ -64,10 +141,12 @@ public class ClassCommand implements CommandExecutor {
 		if ((System.currentTimeMillis() - YamlConfiguration.loadConfiguration(
 				new File("plugins" + File.separator + "NyxPoints"
 						+ File.separator + "PlayerData" + File.separator
-						+ player.getUniqueId() + ".yml")).getLong("kitTime")) >= 86400000 || YamlConfiguration.loadConfiguration(
-								new File("plugins" + File.separator + "NyxPoints"
-										+ File.separator + "PlayerData" + File.separator
-										+ player.getUniqueId() + ".yml")).getLong("kitTime", -1) == -1) {
+						+ player.getUniqueId() + ".yml")).getLong("kitTime")) >= 86400000
+				|| YamlConfiguration.loadConfiguration(
+						new File("plugins" + File.separator + "NyxPoints"
+								+ File.separator + "PlayerData"
+								+ File.separator + player.getUniqueId()
+								+ ".yml")).getLong("kitTime", -1) == -1) {
 			List<ItemStack> is = new ArrayList<ItemStack>();
 			is = Main.getInstance().getClass(player).getKit();
 			for (ItemStack i : is) {

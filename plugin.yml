@@ -5,5 +5,10 @@ description: Adds an rpg aspect to the game
 author: ckm499, NerfFlamer
 commands:
     nyxpoints:
-        description: Access shop and view your Nyx Point balance
+        description: Access the Nyx Shop and view your Nyx Point balance
         aliases: np
+    class:
+        description: Join and leave classes and view class info
+        aliases: c
+    ckit:
+        description: Get class kit

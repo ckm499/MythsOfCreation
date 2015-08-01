@@ -54,8 +54,8 @@ public class Classes {
 		List<ItemStack> translated = new ArrayList<ItemStack>();
 		for(String s : k)
 		{
-			ItemStack temp = new ItemStack(Material.getMaterial(s.substring(0, s.length()-2)));
-			temp.setAmount(Integer.parseInt(s.substring(s.indexOf(" "))));
+			ItemStack temp = new ItemStack(Material.getMaterial(s.substring(0, s.indexOf(" "))));
+			temp.setAmount(Integer.parseInt(s.substring(s.indexOf(" ") + 1)));
 			translated.add(temp);
 		}
 		return translated;
