@@ -17,6 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class ClassCommand implements CommandExecutor {
 
+	//sets this class as executor for the class commands
 	public ClassCommand() {
 		Main.getInstance().getCommand("class").setExecutor(this);
 		Main.getInstance().getCommand("c").setExecutor(this);
@@ -32,7 +33,7 @@ public class ClassCommand implements CommandExecutor {
 				&& sender instanceof Player) {
 
 			if (args.length == 0) {
-				player.sendMessage(ChatColor.RED
+				player.sendMessage(ChatColor.DARK_RED
 						+ "Not enough arguments! Usage: /class (args)");
 				return true;
 			}
@@ -57,6 +58,7 @@ public class ClassCommand implements CommandExecutor {
 					}
 					return true;
 				}
+				//sets players class to "none" in yaml file and removes perks from file
 				if (args[0].equalsIgnoreCase("leave")) {
 					YamlConfiguration temp = new YamlConfiguration();
 					try {
@@ -86,6 +88,8 @@ public class ClassCommand implements CommandExecutor {
 				}
 			}
 			if (args.length == 2) {
+				/*sets players class to args[2] if it exists and they arent already in a class
+				Adds this and specified class perks to the player's yaml file*/
 				if (args[0].equalsIgnoreCase("join")
 						|| args[0].equalsIgnoreCase("j")) {
 					if (Main.getInstance().checkForClass(args[1])) {
@@ -130,6 +134,7 @@ public class ClassCommand implements CommandExecutor {
 			}
 			return false;
 		}
+		//easy alias for /class kit
 		if (cmd.getName().equalsIgnoreCase("ckit")) {
 			kit(player);
 			return true;
@@ -137,6 +142,8 @@ public class ClassCommand implements CommandExecutor {
 		return false;
 	}
 
+	/*gets the class kit from the main class and checks player file to see if cooldown is over
+	Currently set at 24 hour cooldown */
 	public void kit(Player player) {
 		if ((System.currentTimeMillis() - YamlConfiguration.loadConfiguration(
 				new File("plugins" + File.separator + "NyxPoints"

@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 
 public class JoinListener implements Listener {
 
+	//checks if a file exists for a player and creates one if it doesnt
 	@EventHandler
 	public void onPlayerJoin(PlayerLoginEvent e) {
 		if (new File("plugins" + File.separator + "NyxPoints" + File.separator

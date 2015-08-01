@@ -18,6 +18,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class InvClickListener implements Listener{
 	
+	/*handles purchases in the shop
+	 * will have to make more abstract later
+	 */
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
 		Player player = (Player) e.getWhoClicked();
@@ -39,6 +42,7 @@ public class InvClickListener implements Listener{
 			if(pointamount >= price) {
 				ItemStack item = e.getCurrentItem();
 				List<String> lore = new ArrayList<String>();
+				//lore to prevent fakes
 				lore.add(ChatColor.GRAY + "Use this key to");
 				lore.add(ChatColor.GRAY + "unlock a dungeon");
 				ItemMeta iMeta = e.getCurrentItem().getItemMeta();

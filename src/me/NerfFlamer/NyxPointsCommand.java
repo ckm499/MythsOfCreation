@@ -17,6 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class NyxPointsCommand implements CommandExecutor {
 	
+	//sets this class as the executor for commands
 	public NyxPointsCommand()
 	{
 		Main.getInstance().getCommand("nyxpoints").setExecutor(this);
@@ -32,6 +33,7 @@ public class NyxPointsCommand implements CommandExecutor {
 				&& sender instanceof Player) {
 
 			Player player = (Player) sender;
+			//assigns pointamount to the nyxpoint value in the player file
 			Integer pointamount = YamlConfiguration.loadConfiguration(
 					new File("plugins" + File.separator + "NyxPoints"
 							+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml"))
@@ -49,6 +51,7 @@ public class NyxPointsCommand implements CommandExecutor {
 					return true;
 				}
 			}
+			//you know what this does
 			if (args[0].equalsIgnoreCase("shop")
 					|| args[0].equalsIgnoreCase("s")) {
 

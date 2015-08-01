@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+//basic class holding all the data associated with a class
 public class Classes {
 	String name = "";
 	List<ItemStack> kit = new ArrayList<ItemStack>();

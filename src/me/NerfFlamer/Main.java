@@ -16,12 +16,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
 	
 	public static Main instance;
-
-	public static Main hook;
 	
+	//ArrayList that holds all the classes as listed in config.yml
 	public List<Classes> classes = new ArrayList<Classes>();
 	
 
+	//registers commands, listeners and classes
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -34,6 +34,7 @@ public class Main extends JavaPlugin {
 		initializeClasses();
 	}
 	
+	//you know what this is
 	static Main getInstance() {
 		
 		return instance;
@@ -44,6 +45,7 @@ public class Main extends JavaPlugin {
 		this.saveConfig();
 	}
 	
+	//reads config and initializes the classes listed there with the Classes class
 	public void initializeClasses()
 	{
 		Set<String> c = this.getConfig().getConfigurationSection("Classes").getKeys(false);
@@ -77,6 +79,8 @@ public class Main extends JavaPlugin {
 			return;
 		}
 	}
+	
+	//returns a player's class by looking at their yaml
 	public Classes getClass(Player p)
 	{
 		String name = YamlConfiguration.loadConfiguration(
@@ -92,6 +96,8 @@ public class Main extends JavaPlugin {
 		}
 		return classes.get(0);
 	}
+	
+	//checks to see if a class with the name String c exists
 	public boolean checkForClass(String c)
 	{
 		for (Classes cl : classes)
