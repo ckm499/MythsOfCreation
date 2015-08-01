@@ -5,3 +5,18 @@ Classes:
         Kit:
           - WOOD 2
           - LOG 3
+    Kronos:
+        Perks:
+        - Time
+        - Ptime
+        - Weather
+        - Back
+        Kit:
+          - CLOCK 1
+          - COMPASS 1
+          - IRON_SWORD 1
+          - GOLD_HELMET 1
+          - LEATHER_CHESTPLACE 1
+          - GOLD_LEGGINGS 1
+          - LEATHER_BOOTS 1
+    ##Delete this and begin class
