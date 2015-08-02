@@ -68,8 +68,12 @@ public class InvClickListener implements Listener{
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-					player.sendMessage(ChatColor.GOLD + "You have successfully purchased a Common Dungeon Key!");
-					player.sendMessage(ChatColor.YELLOW + "New Point Balance : " + (pointamount-price));
+					player.sendMessage(ChatColor.GOLD + "(!) " + 
+					ChatColor.GREEN + "You have successfully purchased: " + 
+					ChatColor.GOLD + item);
+					player.sendMessage(ChatColor.GOLD + "(!)" + 
+					ChatColor.YELLOW + "New Point Balance: " + 
+					ChatColor.GOLD + (pointamount-price));
 					player.closeInventory();
 					player.getInventory().addItem(item);
 					return;
