@@ -13,7 +13,7 @@ public class JoinListener implements Listener {
 	//checks if a file exists for a player and creates one if it doesnt
 	@EventHandler
 	public void onPlayerJoin(PlayerLoginEvent e) {
-		if (new File("plugins" + File.separator + "NyxPoints" + File.separator
+		if (new File("plugins" + File.separator + "MythsOfCreation" + File.separator
 				+ "PlayerData" + File.separator + e.getPlayer().getUniqueId() + ".yml").isFile()) {
 			return;
 		} else {
@@ -28,7 +28,7 @@ public class JoinListener implements Listener {
 			temp.set("class", "none");
 			temp.set("NyxPoints", 0);
 			try {
-				temp.save("plugins" + File.separator + "NyxPoints"
+				temp.save("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
 						+ e.getPlayer().getUniqueId() + ".yml");
 			} catch (IOException e1) {

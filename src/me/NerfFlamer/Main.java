@@ -24,7 +24,7 @@ public class Main extends JavaPlugin {
 	//registers commands, listeners and classes
 	@Override
 	public void onEnable() {
-		instance = this;
+		setInstance();
 		getServer().getPluginManager().registerEvents(new InvClickListener(), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		new NyxPointsCommand();
@@ -38,6 +38,11 @@ public class Main extends JavaPlugin {
 	static Main getInstance() {
 		
 		return instance;
+	}
+	
+	public void setInstance()
+	{
+		instance = this;
 	}
 
 	@Override
@@ -84,7 +89,7 @@ public class Main extends JavaPlugin {
 	public Classes getClass(Player p)
 	{
 		String name = YamlConfiguration.loadConfiguration(
-				new File("plugins" + File.separator + "NyxPoints"
+				new File("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator + p.getUniqueId() + ".yml"))
 				.getString("class");
 		for (Classes c : classes)

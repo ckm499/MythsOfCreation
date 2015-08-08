@@ -7,12 +7,12 @@ Classes:
           #- LOG 3
     Kronos:
         Perks:
-        - Time
-        - Playertime
-        - Weather
-        - Back
+          - Time
+          - Playertime
+          - Weather
+          - Back
         Kit:
-          - CLOCK 1
+          - WATCH 1
           - COMPASS 1
           - IRON_SWORD 1
           - GOLD_HELMET 1
@@ -21,15 +21,15 @@ Classes:
           - IRON_BOOTS 1
     Hephaestus:
         Perks:
-        - Anvil
-        - Craft
-        - Ignite
-        - Grenade
+          - Anvil
+          - Craft
+          - Ignite
+          - Grenade
         Kit:
           - ANVIL 3
           - IRON_PICKAXE 1
           - IRON_AXE 1
-          - IRON_SHOVEL 1
+          - IRON_SPADE 1
           - DIAMOND_HELMET 1
           - IRON_CHESTPLATE 1
           - IRON_LEGGINGS 1
@@ -37,7 +37,7 @@ Classes:
           - FLINT_AND_STEEL 1
           - OBSIDIAN 2
           - TORCH 64
-          - IRON_BARS 32
+          - IRON_FENCE 32
           - IRON_INGOT 16
           - GOLD_INGOT 8
           - COAL 32

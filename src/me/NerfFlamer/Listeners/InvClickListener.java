@@ -35,7 +35,7 @@ public class InvClickListener implements Listener{
 		
 		if(e.getInventory().getName().contains("Shop")) {
 			Integer pointamount = YamlConfiguration.loadConfiguration(
-					new File("plugins" + File.separator + "NyxPoints"
+					new File("plugins" + File.separator + "MythsOfCreation"
 							+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml"))
 					.getInt("NyxPoints");
 			Integer price = Integer.parseInt(e.getCurrentItem().getItemMeta().getLore().get(1).substring(2));
@@ -52,7 +52,7 @@ public class InvClickListener implements Listener{
 				{
 					YamlConfiguration temp = new YamlConfiguration();
 					try {
-						temp.load(new File("plugins" + File.separator + "NyxPoints"
+						temp.load(new File("plugins" + File.separator + "MythsOfCreation"
 										+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml"));
 					} catch (FileNotFoundException e2) {
 						e2.printStackTrace();
@@ -63,7 +63,7 @@ public class InvClickListener implements Listener{
 					}
 					temp.set("NyxPoints", (pointamount-price));
 					try {
-						temp.save("plugins" + File.separator + "NyxPoints"
+						temp.save("plugins" + File.separator + "MythsOfCreation"
 										+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml");
 					} catch (IOException e1) {
 						e1.printStackTrace();

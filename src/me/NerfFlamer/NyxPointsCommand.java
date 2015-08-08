@@ -35,7 +35,7 @@ public class NyxPointsCommand implements CommandExecutor {
 			Player player = (Player) sender;
 			//assigns pointamount to the nyxpoint value in the player file
 			Integer pointamount = YamlConfiguration.loadConfiguration(
-					new File("plugins" + File.separator + "NyxPoints"
+					new File("plugins" + File.separator + "MythsOfCreation"
 							+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml"))
 					.getInt("NyxPoints");
 			if(args.length == 0)

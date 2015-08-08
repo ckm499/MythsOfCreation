@@ -43,6 +43,10 @@ public class ClassCommand implements CommandExecutor {
 					kit(player);
 					return true;
 				}
+				if (args[0].equalsIgnoreCase("test")) {
+					player.sendMessage(Main.instance.getConfig().getStringList("Classes.Hephaestus.Kit").get(0) + Main.instance.getConfig().getStringList("Classes.Hephaestus.Kit").get(1));
+					return true;
+				}
 				if (args[0].equalsIgnoreCase("info")
 						|| args[0].equalsIgnoreCase("i")) {
 					player.sendMessage(ChatColor.GOLD + "Class: "
@@ -63,7 +67,7 @@ public class ClassCommand implements CommandExecutor {
 					YamlConfiguration temp = new YamlConfiguration();
 					try {
 						temp.load(new File("plugins" + File.separator
-								+ "NyxPoints" + File.separator
+								+ "MythsOfCreation" + File.separator
 								+ "PlayerData" + File.separator
 								+ player.getUniqueId() + ".yml"));
 					} catch (FileNotFoundException e2) {
@@ -78,7 +82,7 @@ public class ClassCommand implements CommandExecutor {
 					temp.set("perks", p);
 					try {
 						temp.save("plugins" + File.separator
-								+ "NyxPoints" + File.separator
+								+ "MythsOfCreation" + File.separator
 								+ "PlayerData" + File.separator
 								+ player.getUniqueId() + ".yml");
 					} catch (IOException e1) {
@@ -97,7 +101,7 @@ public class ClassCommand implements CommandExecutor {
 						if (Main.getInstance().getClass(player).getName().equalsIgnoreCase("none")) {
 							try {
 								temp.load(new File("plugins" + File.separator
-										+ "NyxPoints" + File.separator
+										+ "MythsOfCreation" + File.separator
 										+ "PlayerData" + File.separator
 										+ player.getUniqueId() + ".yml"));
 							} catch (FileNotFoundException e2) {
@@ -108,12 +112,9 @@ public class ClassCommand implements CommandExecutor {
 								e2.printStackTrace();
 							}
 							temp.set("class", (args[1]));
-							List<String> p = new ArrayList<String>();
-							p = Main.getInstance().getConfig().getStringList("Classes." + args[2] + ".Perks");
-							temp.set("perks", p);
 							try {
 								temp.save("plugins" + File.separator
-										+ "NyxPoints" + File.separator
+										+ "MythsOfCreation" + File.separator
 										+ "PlayerData" + File.separator
 										+ player.getUniqueId() + ".yml");
 							} catch (IOException e1) {
@@ -146,11 +147,11 @@ public class ClassCommand implements CommandExecutor {
 	Currently set at 24 hour cooldown */
 	public void kit(Player player) {
 		if ((System.currentTimeMillis() - YamlConfiguration.loadConfiguration(
-				new File("plugins" + File.separator + "NyxPoints"
+				new File("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
 						+ player.getUniqueId() + ".yml")).getLong("kitTime")) >= 86400000
 				|| YamlConfiguration.loadConfiguration(
-						new File("plugins" + File.separator + "NyxPoints"
+						new File("plugins" + File.separator + "MythsOfCreation"
 								+ File.separator + "PlayerData"
 								+ File.separator + player.getUniqueId()
 								+ ".yml")).getLong("kitTime", -1) == -1) {
@@ -161,7 +162,7 @@ public class ClassCommand implements CommandExecutor {
 			}
 			YamlConfiguration temp = new YamlConfiguration();
 			try {
-				temp.load(new File("plugins" + File.separator + "NyxPoints"
+				temp.load(new File("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
 						+ player.getUniqueId() + ".yml"));
 			} catch (FileNotFoundException e2) {
@@ -173,7 +174,7 @@ public class ClassCommand implements CommandExecutor {
 			}
 			temp.set("kitTime", System.currentTimeMillis());
 			try {
-				temp.save("plugins" + File.separator + "NyxPoints"
+				temp.save("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
 						+ player.getUniqueId() + ".yml");
 			} catch (IOException e1) {
