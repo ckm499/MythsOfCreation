@@ -1,10 +1,13 @@
-package me.NerfFlamer;
+package me.NerfFlamer.Commands;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import me.NerfFlamer.Classes;
+import me.NerfFlamer.Main;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import me.NerfFlamer.Commands.ClassCommand;
+import me.NerfFlamer.Commands.NyxPointsCommand;
+import me.NerfFlamer.Commands.PerkCommands;
 import me.NerfFlamer.Listeners.InvClickListener;
 import me.NerfFlamer.Listeners.JoinListener;
 
@@ -29,13 +32,14 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new JoinListener(), this);
 		new NyxPointsCommand();
 		new ClassCommand();
+		new PerkCommands();
 		this.saveDefaultConfig();
 		classes.add(new Classes("none"));
 		initializeClasses();
 	}
 	
 	//you know what this is
-	static Main getInstance() {
+	public static Main getInstance() {
 		
 		return instance;
 	}

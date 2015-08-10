@@ -1,7 +1,9 @@
-package me.NerfFlamer;
+package me.NerfFlamer.Commands;
 
 import java.io.File;
 import java.util.Arrays;
+
+import me.NerfFlamer.Main;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,21 +34,21 @@ public class NyxPointsCommand implements CommandExecutor {
 				|| cmd.getName().equalsIgnoreCase("np")
 				&& sender instanceof Player) {
 
-			Player player = (Player) sender;
-			//assigns pointamount to the nyxpoint value in the player file
+			Player p = (Player) sender;
+			//assigns pointamount to the nyxpoint value in the p file
 			Integer pointamount = YamlConfiguration.loadConfiguration(
 					new File("plugins" + File.separator + "MythsOfCreation"
-							+ File.separator + "PlayerData" + File.separator + player.getUniqueId() + ".yml"))
+							+ File.separator + "PlayerData" + File.separator + p.getUniqueId() + ".yml"))
 					.getInt("NyxPoints");
 			if(args.length == 0)
 			{
-				player.sendMessage(ChatColor.RED + "Not enough arguments! Usage: /nyxpoints (args)");
+				p.sendMessage(ChatColor.RED + "Not enough arguments! Usage: /nyxpoints (args)");
 				return true;
 			}
 			if (args.length == 1) {
 				if (args[0].equalsIgnoreCase("balance")
 						|| args[0].equalsIgnoreCase("bal")) {
-					player.sendMessage(ChatColor.GOLD + "NyxPoints: "
+					p.sendMessage(ChatColor.GOLD + "NyxPoints: "
 							+ ChatColor.YELLOW + pointamount);
 					return true;
 				}
@@ -64,12 +66,12 @@ public class NyxPointsCommand implements CommandExecutor {
 				commonKey.setItemMeta(commonKeyMeta);
 				Inventory shop = Bukkit.createInventory(null, 9, "Shop");
 				shop.setItem(0, commonKey);
-				player.openInventory(shop);
+				p.openInventory(shop);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("kit"))
 			{
-				player.sendMessage(Main.getInstance().classes.get(0).getKit().get(0) + " " + Main.getInstance().classes.get(0).getKit().get(1));
+				p.sendMessage(Main.getInstance().classes.get(0).getKit().get(0) + " " + Main.getInstance().classes.get(0).getKit().get(1));
 			}
 		}
 

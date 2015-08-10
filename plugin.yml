@@ -12,3 +12,5 @@ commands:
         aliases: c
     ckit:
         description: Get class kit
+    invis:
+        description: Make yourself invisible for a certain time
