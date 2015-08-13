@@ -14,3 +14,11 @@ commands:
         description: Get class kit
     invis:
         description: Make yourself invisible for a certain time
+    fury:
+        description: Core perk for Ares
+    sheild:
+        description: Core perk for Hephaestus
+    sprint:
+        description: Core perk for Kronos
+    regen:
+        description: Core perk for Artemis

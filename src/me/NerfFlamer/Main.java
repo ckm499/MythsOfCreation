@@ -9,6 +9,8 @@ import me.NerfFlamer.Commands.ClassCommand;
 import me.NerfFlamer.Commands.NyxPointsCommand;
 import me.NerfFlamer.Commands.PerkCommands;
 import me.NerfFlamer.Listeners.InvClickListener;
+import me.NerfFlamer.Listeners.ItemDropListener;
+import me.NerfFlamer.Listeners.ItemPlaceListener;
 import me.NerfFlamer.Listeners.JoinListener;
 
 import org.apache.commons.lang.StringUtils;
@@ -30,6 +32,8 @@ public class Main extends JavaPlugin {
 		setInstance();
 		getServer().getPluginManager().registerEvents(new InvClickListener(), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(), this);
+		getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
+		getServer().getPluginManager().registerEvents(new ItemPlaceListener(), this);
 		new NyxPointsCommand();
 		new ClassCommand();
 		new PerkCommands();

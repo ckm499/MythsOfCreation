@@ -10,10 +10,12 @@ import me.NerfFlamer.Classes;
 import me.NerfFlamer.Main;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -44,6 +46,16 @@ public class ClassCommand implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("kit")
 						|| args[0].equalsIgnoreCase("k")) {
 					kit(player);
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("test")) {
+					ItemStack i = new ItemStack(Material.IRON_FENCE);
+					ItemMeta im = i.getItemMeta();
+					List<String> l = new ArrayList<String>();
+					l.add("Fury");
+					im.setLore(l);
+					i.setItemMeta(im);
+					player.getInventory().addItem(i);
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("test")) {
