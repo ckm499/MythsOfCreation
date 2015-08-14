@@ -1,4 +1,4 @@
-package me.NerfFlamer;
+package me.NyxCraft;
 
 import java.util.ArrayList;
 import java.util.List;
