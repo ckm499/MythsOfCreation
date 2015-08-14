@@ -17,98 +17,101 @@ public class MobDeathListener implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onMobDeath(EntityDeathEvent e) {
-		Player p = e.getEntity().getKiller();
-		int tier = YamlConfiguration.loadConfiguration(
-				new File("plugins" + File.separator + "MythsOfCreation"
-						+ File.separator + "PlayerData" + File.separator
-						+ p.getUniqueId() + ".yml")).getInt("tier");
-		if (e.getEntity().getType().getName().equals("Zombie")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Zombie!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Skeleton")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Skeleton!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Spider")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Spider!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Creeper")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Creeper!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Witch")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Witch!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Blaze")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Blaze!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Ghast")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a Ghast!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equalsIgnoreCase("Enderman")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing an Enderman!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("PigZombie")) {
-			p.sendMessage(ChatColor.GRAY
-					+ "You earned 1 nxp for killing a PigZombie!");
-			addNxp(p, 1);
-		}
-		if (e.getEntity().getType().getName().equals("Wither")) {
-			if (tier == 1) {
+		if (e.getEntity().getKiller() instanceof Player) {
+			Player p = e.getEntity().getKiller();
+			int tier = YamlConfiguration.loadConfiguration(
+					new File("plugins" + File.separator + "MythsOfCreation"
+							+ File.separator + "PlayerData" + File.separator
+							+ p.getUniqueId() + ".yml")).getInt("tier");
+			if (e.getEntity().getType().getName().equals("Zombie")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 25 nxp for killing a Wither!");
-				addNxp(p, 25);
+						+ "You earned 1 nxp for killing a Zombie!");
+				addNxp(p, 1);
 			}
-			if (tier == 2) {
+			if (e.getEntity().getType().getName().equals("Skeleton")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 50 nxp for killing a Wither!");
-				addNxp(p, 50);
+						+ "You earned 1 nxp for killing a Skeleton!");
+				addNxp(p, 1);
 			}
-			if (tier == 3) {
+			if (e.getEntity().getType().getName().equals("Spider")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 100 nxp for killing a Wither!");
-				addNxp(p, 100);
+						+ "You earned 1 nxp for killing a Spider!");
+				addNxp(p, 1);
 			}
-			if (tier >= 4) {
+			if (e.getEntity().getType().getName().equals("Creeper")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 150 nxp for killing a Wither!");
-				addNxp(p, 150);
+						+ "You earned 1 nxp for killing a Creeper!");
+				addNxp(p, 1);
 			}
-		}
-		if (e.getEntity().getType().getName().equalsIgnoreCase("Enderdragon")) {
-			if (tier == 1) {
+			if (e.getEntity().getType().getName().equals("Witch")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 50 nxp for killing a Wither!");
-				addNxp(p, 50);
+						+ "You earned 1 nxp for killing a Witch!");
+				addNxp(p, 1);
 			}
-			if (tier == 2) {
+			if (e.getEntity().getType().getName().equals("Blaze")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 100 nxp for killing a Wither!");
-				addNxp(p, 100);
+						+ "You earned 1 nxp for killing a Blaze!");
+				addNxp(p, 1);
 			}
-			if (tier == 3) {
+			if (e.getEntity().getType().getName().equals("Ghast")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 175 nxp for killing a Wither!");
-				addNxp(p, 175);
+						+ "You earned 1 nxp for killing a Ghast!");
+				addNxp(p, 1);
 			}
-			if (tier >= 4) {
+			if (e.getEntity().getType().getName().equalsIgnoreCase("Enderman")) {
 				p.sendMessage(ChatColor.GRAY
-						+ "You earned 250 nxp for killing a Wither!");
-				addNxp(p, 250);
+						+ "You earned 1 nxp for killing an Enderman!");
+				addNxp(p, 1);
+			}
+			if (e.getEntity().getType().getName().equals("PigZombie")) {
+				p.sendMessage(ChatColor.GRAY
+						+ "You earned 1 nxp for killing a PigZombie!");
+				addNxp(p, 1);
+			}
+			if (e.getEntity().getType().getName().equals("Wither")) {
+				if (tier == 1) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 25 nxp for killing a Wither!");
+					addNxp(p, 25);
+				}
+				if (tier == 2) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 50 nxp for killing a Wither!");
+					addNxp(p, 50);
+				}
+				if (tier == 3) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 100 nxp for killing a Wither!");
+					addNxp(p, 100);
+				}
+				if (tier >= 4) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 150 nxp for killing a Wither!");
+					addNxp(p, 150);
+				}
+			}
+			if (e.getEntity().getType().getName()
+					.equalsIgnoreCase("Enderdragon")) {
+				if (tier == 1) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 50 nxp for killing a Wither!");
+					addNxp(p, 50);
+				}
+				if (tier == 2) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 100 nxp for killing a Wither!");
+					addNxp(p, 100);
+				}
+				if (tier == 3) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 175 nxp for killing a Wither!");
+					addNxp(p, 175);
+				}
+				if (tier >= 4) {
+					p.sendMessage(ChatColor.GRAY
+							+ "You earned 250 nxp for killing a Wither!");
+					addNxp(p, 250);
+				}
 			}
 		}
 	}
