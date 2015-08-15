@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.NyxCraft.Classes;
+import me.NyxCraft.MOCUtils;
 import me.NyxCraft.Main;
 
 import org.bukkit.ChatColor;
@@ -69,7 +70,7 @@ public class ClassCommand implements CommandExecutor {
 						|| args[0].equalsIgnoreCase("i")) {
 					player.sendMessage(ChatColor.GOLD + "Class: "
 							+ ChatColor.YELLOW
-							+ Main.getInstance().getClass(player).getName());
+							+ MOCUtils.getClass(player).getName());
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("list")) {
@@ -119,9 +120,9 @@ public class ClassCommand implements CommandExecutor {
 				 */
 				if (args[0].equalsIgnoreCase("join")
 						|| args[0].equalsIgnoreCase("j")) {
-					if (Main.getInstance().checkForClass(args[1])) {
+					if (MOCUtils.checkForClass(args[1])) {
 						YamlConfiguration temp = new YamlConfiguration();
-						if (Main.getInstance().getClass(player).getName()
+						if (MOCUtils.getClass(player).getName()
 								.equalsIgnoreCase("none")) {
 							try {
 								temp.load(new File("plugins" + File.separator
@@ -186,7 +187,7 @@ public class ClassCommand implements CommandExecutor {
 								+ File.separator + player.getUniqueId()
 								+ ".yml")).getLong("kitTime", -1) == -1) {
 			List<ItemStack> is = new ArrayList<ItemStack>();
-			is = Main.getInstance().getClass(player).getKit();
+			is = MOCUtils.getClass(player).getKit();
 			for (ItemStack i : is) {
 				player.getInventory().addItem(i);
 			}

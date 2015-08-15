@@ -1,6 +1,7 @@
 package me.NyxCraft;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,6 @@ import me.NyxCraft.Listeners.MobDeathListener;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -39,6 +39,18 @@ public class Main extends JavaPlugin {
 		new NyxPointsCommand();
 		new ClassCommand();
 		new PerkCommands();
+		if (!(new File("plugins" + File.separator + "MythsOfCreation"
+										+ File.separator + "Acheivements.yml").isFile()))
+		{
+			YamlConfiguration temp = new YamlConfiguration();
+			temp.createSection("firstPerk");
+			try {
+				temp.save("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "Acheivements.yml");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 		this.saveDefaultConfig();
 		classes.add(new Classes("none"));
 		initializeClasses();
@@ -93,35 +105,5 @@ public class Main extends JavaPlugin {
 			}
 			return;
 		}
-	}
-	
-	//returns a player's class by looking at their yaml
-	public Classes getClass(Player p)
-	{
-		String name = YamlConfiguration.loadConfiguration(
-				new File("plugins" + File.separator + "MythsOfCreation"
-						+ File.separator + "PlayerData" + File.separator + p.getUniqueId() + ".yml"))
-				.getString("class");
-		for (Classes c : classes)
-		{
-			if (c.getName().equalsIgnoreCase(name))
-			{
-				return c;
-			}
-		}
-		return classes.get(0);
-	}
-	
-	//checks to see if a class with the name String c exists
-	public boolean checkForClass(String c)
-	{
-		for (Classes cl : classes)
-		{
-			if (cl.getName().equalsIgnoreCase(c))
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 }

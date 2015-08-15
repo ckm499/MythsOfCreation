@@ -1,6 +1,6 @@
 name: MythsOfCreation
 version: 1.0
-main: me.NerfFlamer.Main
+main: me.NyxCraft.Main
 description: Adds an rpg aspect to the game
 author: ckm499, NerfFlamer
 commands:

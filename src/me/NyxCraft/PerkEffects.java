@@ -41,16 +41,16 @@ public class PerkEffects {
 			}
 			p.sendMessage(ChatColor.GRAY + "You are now invisible!");
 			PerkThread perk = new PerkThread(p, time,
-					"You are no longer invisible!");
+					"You are no longer invisible!\nYou have earned 5 nxp for using invis!");
 			stp.schedule(perk, time, TimeUnit.MILLISECONDS);
+			MOCUtils.addNxp(p, 5);
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	public boolean fury(List<String> perks, Player p)
-	{
+
+	public boolean fury(List<String> perks, Player p) {
 		if (perks.contains("FURY:1") || perks.contains("FURY:2")
 				|| perks.contains("FURY:3") || perks.contains("FURY:4")
 				|| perks.contains("ALL")) {
@@ -80,14 +80,15 @@ public class PerkEffects {
 			}
 			p.sendMessage(ChatColor.GRAY + "Your fury has been unleashed!");
 			PerkThread perk = new PerkThread(p, time,
-					"Your fury has faded!");
+					"Your fury has faded!\nYou have earned 5 nxp for harnessing your fury!");
 			stp.schedule(perk, time, TimeUnit.MILLISECONDS);
+			MOCUtils.addNxp(p, 5);
 			return true;
 		}
-			return false;
+		return false;
 	}
-	public boolean sheild(List<String> perks, Player p)
-	{
+
+	public boolean sheild(List<String> perks, Player p) {
 		if (perks.contains("SHEILD:1") || perks.contains("SHEILD:2")
 				|| perks.contains("SHEILD:3") || perks.contains("SHEILD:4")
 				|| perks.contains("ALL")) {
@@ -115,54 +116,55 @@ public class PerkEffects {
 				p.addPotionEffect(pe);
 				time = 5000;
 			}
-			p.sendMessage(ChatColor.GRAY
-					+ "You have activated your sheild!");
+			p.sendMessage(ChatColor.GRAY + "You have activated your sheild!");
 			PerkThread perk = new PerkThread(p, time,
-					"Your sheild has been lowered!");
+					"Your sheild has been lowered!\nYou have earned 5 nxp for raising your sheild!");
 			stp.schedule(perk, time, TimeUnit.MILLISECONDS);
+			MOCUtils.addNxp(p, 5);
 			return true;
 		}
 		return false;
 	}
-	public boolean sprint(List<String> perks, Player p)
-	{
+
+	public boolean sprint(List<String> perks, Player p) {
 		if (perks.contains("SPRINT:1") || perks.contains("SPRINT:2")
 				|| perks.contains("SPRINT:3") || perks.contains("SPRINT:4")
 				|| perks.contains("ALL")) {
 			if (perks.contains("SPRINT:1")) {
-				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED,
-						60, 0);
+				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED, 60,
+						0);
 				p.addPotionEffect(pe);
 				time = 3000;
 			}
 			if (perks.contains("SPRINT:2")) {
-				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED,
-						60, 1);
+				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED, 60,
+						1);
 				p.addPotionEffect(pe);
 				time = 3000;
 			}
 			if (perks.contains("SPRINT:3")) {
-				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED,
-						80, 1);
+				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED, 80,
+						1);
 				p.addPotionEffect(pe);
 				time = 4000;
 			}
 			if (perks.contains("SPRINT:4") || perks.contains("ALL")) {
-				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED,
-						100, 1);
+				PotionEffect pe = new PotionEffect(PotionEffectType.SPEED, 100,
+						1);
 				p.addPotionEffect(pe);
 				time = 5000;
 			}
 			p.sendMessage(ChatColor.GRAY + "You have activated sprint!");
 			PerkThread perk = new PerkThread(p, time,
-					"Sprint has worn off!");
+					"Sprint has worn off!\nYou have earned 5 nxp for sprinting!");
 			stp.schedule(perk, time, TimeUnit.MILLISECONDS);
+			MOCUtils.addNxp(p, 5);
 			return true;
 		}
 		return false;
 	}
-	public boolean regen(List<String> perks, Player p)
-	{
+
+	public boolean regen(List<String> perks, Player p) {
 		if (perks.contains("REGEN:1") || perks.contains("REGEN:2")
 				|| perks.contains("REGEN:3") || perks.contains("REGEN:4")
 				|| perks.contains("ALL")) {
@@ -192,8 +194,9 @@ public class PerkEffects {
 			}
 			p.sendMessage(ChatColor.GRAY + "You have begun to gain health!");
 			PerkThread perk = new PerkThread(p, time,
-					"You have stopped gaining health!");
+					"You have stopped gaining health!\nYou have earned 5 nxp for using regen!");
 			stp.schedule(perk, time, TimeUnit.MILLISECONDS);
+			MOCUtils.addNxp(p, 5);
 			return true;
 		}
 		return false;
