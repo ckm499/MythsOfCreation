@@ -1,8 +1,11 @@
 package me.NyxCraft.Listeners;
 
+import java.io.File;
+
 import me.NyxCraft.MOCUtils;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,10 +18,47 @@ public class PlayerDeathListener implements Listener{
 	{
 		if (e.getEntity().getKiller() instanceof Player)
 		{
+			int reward = 0;
 			Player p = e.getEntity().getKiller();
-			MOCUtils.addNxp(p, 10);
-			p.sendMessage(ChatColor.GRAY + "You have earned 10 nxp for killing " + e.getEntity().getDisplayName() + "!");
-			MOCUtils.checkAcheivement(p, "Defeat another player", 25);
+			int tier = YamlConfiguration.loadConfiguration(
+					new File("plugins" + File.separator + "MythsOfCreation"
+							+ File.separator + "PlayerData" + File.separator
+							+ p.getUniqueId() + ".yml")).getInt("tier");
+			if (tier == 1)
+			{
+				reward = 10;
+			}
+			if (tier == 2)
+			{
+				reward = 20;
+			}
+			if (tier == 3)
+			{
+				reward = 30;
+			}
+			if (tier == 4)
+			{
+				reward = 40;
+			}
+			if (tier == 5)
+			{
+				reward = 60;
+			}
+			if (tier == 6)
+			{
+				reward = 80;
+			}
+			if (tier == 7)
+			{
+				reward = 100;
+			}
+			if (tier == 8)
+			{
+				return;
+			}
+			MOCUtils.addNxp(p, reward);
+			p.sendMessage(ChatColor.GRAY + "You have earned " + reward + " nxp for killing " + e.getEntity().getDisplayName() + "!");
+			MOCUtils.checkAcheivement(p, "Defeat another player", reward);
 		}
 	}
 
