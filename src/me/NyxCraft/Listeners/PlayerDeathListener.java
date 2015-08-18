@@ -24,6 +24,10 @@ public class PlayerDeathListener implements Listener{
 					new File("plugins" + File.separator + "MythsOfCreation"
 							+ File.separator + "PlayerData" + File.separator
 							+ p.getUniqueId() + ".yml")).getInt("tier");
+			String cl = YamlConfiguration.loadConfiguration(
+					new File("plugins" + File.separator + "MythsOfCreation"
+							+ File.separator + "PlayerData" + File.separator
+							+ p.getUniqueId() + ".yml")).getString("class");
 			if (tier == 1)
 			{
 				reward = 10;
@@ -55,6 +59,10 @@ public class PlayerDeathListener implements Listener{
 			if (tier == 8)
 			{
 				return;
+			}
+			if (cl.equals("Ares"))
+			{
+				reward = (int) (reward * 1.5);
 			}
 			MOCUtils.addNxp(p, reward);
 			p.sendMessage(ChatColor.GRAY + "You have earned " + reward + " nxp for killing " + e.getEntity().getDisplayName() + "!");
