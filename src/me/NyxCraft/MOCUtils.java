@@ -43,7 +43,7 @@ public class MOCUtils {
 					+ "You have earned the acheivement " + ChatColor.GOLD
 					+ acheivement + " " + ChatColor.GRAY
 					+ "and " + reward + " nxp!");
-			addNxp(p, reward);
+			addNp(p, reward);
 		}
 	}
 	
@@ -157,5 +157,32 @@ public class MOCUtils {
 				}
 			}
 			return false;
+		}
+		
+		public static void addNp(Player p, int amount) {
+			YamlConfiguration temp = new YamlConfiguration();
+			int firstAmount = YamlConfiguration.loadConfiguration(
+					new File("plugins" + File.separator + "MythsOfCreation"
+							+ File.separator + "PlayerData" + File.separator
+							+ p.getUniqueId() + ".yml")).getInt("nxp");
+			try {
+				temp.load(new File("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml"));
+			} catch (FileNotFoundException e2) {
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				e2.printStackTrace();
+			} catch (InvalidConfigurationException e2) {
+				e2.printStackTrace();
+			}
+			temp.set("np", firstAmount + amount);
+			try {
+				temp.save("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		}
 }

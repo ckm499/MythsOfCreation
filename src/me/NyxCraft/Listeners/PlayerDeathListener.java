@@ -66,7 +66,7 @@ public class PlayerDeathListener implements Listener{
 			}
 			MOCUtils.addNxp(p, reward);
 			p.sendMessage(ChatColor.GRAY + "You have earned " + reward + " nxp for killing " + e.getEntity().getDisplayName() + "!");
-			MOCUtils.checkAcheivement(p, "Defeat another player", reward);
+			MOCUtils.checkAcheivement(p, "Defeat another player", 2);
 		}
 	}
 
