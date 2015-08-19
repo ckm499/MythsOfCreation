@@ -11,9 +11,7 @@ commands:
         description: Join and leave classes and view class info
         aliases: c
     ckit:
-        description: Get class kit
-    invis:
-        description: Make yourself invisible for a certain time
+        description: Get your class kit
     fury:
         description: Core perk for Ares
     sheild:
@@ -22,3 +20,7 @@ commands:
         description: Core perk for Kronos
     regen:
         description: Core perk for Artemis
+    anvil:
+        description: Purchasable Hephaestus perk
+    invis:
+        description: Purchasable Kronos perk

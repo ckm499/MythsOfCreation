@@ -6,20 +6,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class MOCUtils {
 	public static Main plugin = Main.getInstance();
 
-	public static void checkAcheivement(Player p, String acheivement, int reward)
-	{
+	public static void checkAcheivement(Player p, String acheivement, int reward) {
 		YamlConfiguration temp = new YamlConfiguration();
 		try {
 			temp.load(new File("plugins" + File.separator + "MythsOfCreation"
-							+ File.separator + "Acheivements.yml"));
+					+ File.separator + "Acheivements.yml"));
 		} catch (FileNotFoundException e2) {
 			e2.printStackTrace();
 		} catch (IOException e2) {
@@ -34,19 +38,18 @@ public class MOCUtils {
 			temp.set(acheivement, a);
 			try {
 				temp.save(new File("plugins" + File.separator
-									+ "MythsOfCreation" + File.separator
-									+ "Acheivements.yml"));
+						+ "MythsOfCreation" + File.separator
+						+ "Acheivements.yml"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			p.sendMessage(ChatColor.GRAY
-					+ "You have earned the acheivement " + ChatColor.GOLD
-					+ acheivement + " " + ChatColor.GRAY
+			p.sendMessage(ChatColor.GRAY + "You have earned the acheivement "
+					+ ChatColor.GOLD + acheivement + " " + ChatColor.GRAY
 					+ "and " + reward + " nxp!");
 			addNp(p, reward);
 		}
 	}
-	
+
 	public static void addNxp(Player p, int amount) {
 		YamlConfiguration temp = new YamlConfiguration();
 		int firstAmount = YamlConfiguration.loadConfiguration(
@@ -129,60 +132,113 @@ public class MOCUtils {
 			e1.printStackTrace();
 		}
 	}
-	//returns a player's class by looking at their yaml
-		public static Classes getClass(Player p)
-		{
-			String name = YamlConfiguration.loadConfiguration(
-					new File("plugins" + File.separator + "MythsOfCreation"
-							+ File.separator + "PlayerData" + File.separator + p.getUniqueId() + ".yml"))
-					.getString("class");
-			for (Classes c : plugin.classes)
-			{
-				if (c.getName().equalsIgnoreCase(name))
-				{
-					return c;
+
+	// returns a player's class by looking at their yaml
+	public static Classes getClass(Player p) {
+		String name = YamlConfiguration.loadConfiguration(
+				new File("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml")).getString("class");
+		for (Classes c : plugin.classes) {
+			if (c.getName().equalsIgnoreCase(name)) {
+				return c;
+			}
+		}
+		return plugin.classes.get(0);
+	}
+
+	// checks to see if a class with the name String c exists
+	public static boolean checkForClass(String c) {
+		for (Classes cl : plugin.classes) {
+			if (cl.getName().equalsIgnoreCase(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static void addNp(Player p, int amount) {
+		YamlConfiguration temp = new YamlConfiguration();
+		int firstAmount = YamlConfiguration.loadConfiguration(
+				new File("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml")).getInt("nxp");
+		try {
+			temp.load(new File("plugins" + File.separator + "MythsOfCreation"
+					+ File.separator + "PlayerData" + File.separator
+					+ p.getUniqueId() + ".yml"));
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		} catch (InvalidConfigurationException e2) {
+			e2.printStackTrace();
+		}
+		temp.set("np", firstAmount + amount);
+		try {
+			temp.save("plugins" + File.separator + "MythsOfCreation"
+					+ File.separator + "PlayerData" + File.separator
+					+ p.getUniqueId() + ".yml");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public static void openShop(Player p) {
+		Inventory shop = Bukkit.createInventory(null, 9, "Shop");
+		List<String> perks = YamlConfiguration.loadConfiguration(
+				new File("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml")).getStringList("perks");
+		int tier = YamlConfiguration.loadConfiguration(
+				new File("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml")).getInt("tier");
+		String cl = YamlConfiguration.loadConfiguration(
+				new File("plugins" + File.separator + "MythsOfCreation"
+						+ File.separator + "PlayerData" + File.separator
+						+ p.getUniqueId() + ".yml")).getString("class");
+		if (cl.equals("Hephaestus")) {
+			if (tier == 1) {
+				if (!perks.contains("SHEILD:1")) {
+					shop.setItem(
+							shop.firstEmpty(),
+							createItem("Sheild 1", "IRON_FENCE",
+									"Raise a sheild for 3 seconds", 2));
+				}
+				if (!perks.contains("RESIST:1")) {
+					shop.setItem(
+							shop.firstEmpty(),
+							createItem("Resist 1", "LEATHER_CHESTPLATE",
+									"Resist Player Damage by 2%", 2));
+				}
+				if (perks.contains("RESIST:1")) {
+					shop.setItem(
+							shop.firstEmpty(),
+							createItem(ChatColor.RED + "Resist 2", "IRON_CHESTPLATE",
+									ChatColor.RED + "2nd tier required to purchase this perk", 4));
+				}
+				if (perks.contains("SHEILD:1")) {
+					shop.setItem(
+							shop.firstEmpty(),
+							createItem(ChatColor.RED + "Sheild 2", "IRON_FENCE",
+									ChatColor.RED + "2nd tier required to purchase this perk", 4));
 				}
 			}
-			return plugin.classes.get(0);
 		}
-		
-		//checks to see if a class with the name String c exists
-		public static boolean checkForClass(String c)
-		{
-			for (Classes cl : plugin.classes)
-			{
-				if (cl.getName().equalsIgnoreCase(c))
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-		
-		public static void addNp(Player p, int amount) {
-			YamlConfiguration temp = new YamlConfiguration();
-			int firstAmount = YamlConfiguration.loadConfiguration(
-					new File("plugins" + File.separator + "MythsOfCreation"
-							+ File.separator + "PlayerData" + File.separator
-							+ p.getUniqueId() + ".yml")).getInt("nxp");
-			try {
-				temp.load(new File("plugins" + File.separator + "MythsOfCreation"
-						+ File.separator + "PlayerData" + File.separator
-						+ p.getUniqueId() + ".yml"));
-			} catch (FileNotFoundException e2) {
-				e2.printStackTrace();
-			} catch (IOException e2) {
-				e2.printStackTrace();
-			} catch (InvalidConfigurationException e2) {
-				e2.printStackTrace();
-			}
-			temp.set("np", firstAmount + amount);
-			try {
-				temp.save("plugins" + File.separator + "MythsOfCreation"
-						+ File.separator + "PlayerData" + File.separator
-						+ p.getUniqueId() + ".yml");
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
+		p.openInventory(shop);
+	}
+
+	public static ItemStack createItem(String name, String material,
+			String desc, int price) {
+		ItemStack temp = new ItemStack(Material.getMaterial(material));
+		ItemMeta meta = temp.getItemMeta();
+		meta.setDisplayName(name);
+		List<String> lore = new ArrayList<String>();
+		lore.add(desc);
+		lore.add("Price: " + price);
+		meta.setLore(lore);
+		temp.setItemMeta(meta);
+		return temp;
+	}
 }

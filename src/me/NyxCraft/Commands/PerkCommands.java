@@ -24,6 +24,7 @@ public class PerkCommands implements CommandExecutor {
 		Main.getInstance().getCommand("sheild").setExecutor(this);
 		Main.getInstance().getCommand("sprint").setExecutor(this);
 		Main.getInstance().getCommand("regen").setExecutor(this);
+		Main.getInstance().getCommand("anvil").setExecutor(this);
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label,

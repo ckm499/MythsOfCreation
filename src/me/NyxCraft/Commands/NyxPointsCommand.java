@@ -1,19 +1,14 @@
 package me.NyxCraft.Commands;
 
 import java.io.File;
-import java.util.Arrays;
 
+import me.NyxCraft.MOCUtils;
 import me.NyxCraft.Main;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -56,17 +51,7 @@ public class NyxPointsCommand implements CommandExecutor {
 			//you know what this does
 			if (args[0].equalsIgnoreCase("shop")
 					|| args[0].equalsIgnoreCase("s")) {
-
-				ItemStack commonKey = new ItemStack(Material.TRIPWIRE_HOOK);
-				ItemMeta commonKeyMeta = commonKey.getItemMeta();
-				commonKeyMeta.setDisplayName("" + ChatColor.BOLD
-						+ ChatColor.WHITE + "Common Dungeon Key");
-				commonKeyMeta.setLore(Arrays.asList(ChatColor.GRAY + "Price: ",
-						ChatColor.GRAY + "2"));
-				commonKey.setItemMeta(commonKeyMeta);
-				Inventory shop = Bukkit.createInventory(null, 9, "Shop");
-				shop.setItem(0, commonKey);
-				p.openInventory(shop);
+				MOCUtils.openShop(p);
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("kit"))
