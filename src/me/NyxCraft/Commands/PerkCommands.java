@@ -6,12 +6,15 @@ import java.util.List;
 import me.NyxCraft.Main;
 import me.NyxCraft.PerkEffects;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
 
 public class PerkCommands implements CommandExecutor {
 
@@ -31,6 +34,21 @@ public class PerkCommands implements CommandExecutor {
 				new File("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
 						+ p.getUniqueId() + ".yml")).getStringList("perks");
+		if (cmd.getName().equalsIgnoreCase("anvil"))
+		{
+			if (perks.contains("ANVIL") || perks.contains("ALL"))
+			{
+				Inventory i = Bukkit.createInventory(null, InventoryType.ANVIL);
+				 p.openInventory(i);
+				 p.sendMessage(ChatColor.GRAY + "You have opened up an anvil!");
+				 return true;
+			}
+			else {
+				p.sendMessage(ChatColor.DARK_RED
+						+ "You must purchase this perk before using it!");
+				return true;
+			}
+		}
 		if (cmd.getName().equalsIgnoreCase("invis")) {
 			if (effect.invis(perks, p)) {
 				return true;

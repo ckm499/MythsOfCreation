@@ -48,7 +48,7 @@ public class ClassCommand implements CommandExecutor {
 					kit(player);
 					return true;
 				}
-				if (args[0].equalsIgnoreCase("test")) {
+				if (args[0].equalsIgnoreCase("test1")) {
 					ItemStack i = new ItemStack(Material.IRON_FENCE);
 					ItemMeta im = i.getItemMeta();
 					List<String> l = new ArrayList<String>();
@@ -261,5 +261,4 @@ public class ClassCommand implements CommandExecutor {
 		}
 		return "";
 	}
-
 }

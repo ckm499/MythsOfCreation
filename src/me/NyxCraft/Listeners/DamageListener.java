@@ -11,7 +11,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class DamageListener implements Listener {
+public class DamageListener implements Listener{
 
 	@EventHandler
 	public void onDamageByEntity(EntityDamageByEntityEvent e) {
