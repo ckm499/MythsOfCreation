@@ -45,7 +45,7 @@ public class MOCUtils {
 			}
 			p.sendMessage(ChatColor.GRAY + "You have earned the acheivement "
 					+ ChatColor.GOLD + acheivement + " " + ChatColor.GRAY
-					+ "and " + reward + " nxp!");
+					+ "and " + reward + " np!");
 			addNp(p, reward);
 		}
 	}
@@ -162,7 +162,7 @@ public class MOCUtils {
 		int firstAmount = YamlConfiguration.loadConfiguration(
 				new File("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
-						+ p.getUniqueId() + ".yml")).getInt("nxp");
+						+ p.getUniqueId() + ".yml")).getInt("NyxPoints");
 		try {
 			temp.load(new File("plugins" + File.separator + "MythsOfCreation"
 					+ File.separator + "PlayerData" + File.separator
@@ -174,7 +174,7 @@ public class MOCUtils {
 		} catch (InvalidConfigurationException e2) {
 			e2.printStackTrace();
 		}
-		temp.set("np", firstAmount + amount);
+		temp.set("NyxPoints", firstAmount + amount);
 		try {
 			temp.save("plugins" + File.separator + "MythsOfCreation"
 					+ File.separator + "PlayerData" + File.separator
@@ -200,13 +200,17 @@ public class MOCUtils {
 						+ p.getUniqueId() + ".yml")).getString("class");
 		if (cl.equals("Hephaestus")) {
 			if (tier == 1) {
-				if (!perks.contains("SHEILD:1")) {
+				if (!(perks.contains("SHEILD:1") || perks.contains("SHEILD:2")
+						|| perks.contains("SHEILD:3")
+						|| perks.contains("SHEILD:4") || perks.contains("ALL"))) {
 					shop.setItem(
 							shop.firstEmpty(),
 							createItem("Sheild 1", "IRON_FENCE",
 									"Raise a sheild for 3 seconds", 2));
 				}
-				if (!perks.contains("RESIST:1")) {
+				if (!(perks.contains("RESIST:1") || perks.contains("RESIST:2")
+						|| perks.contains("RESIST:3")
+						|| perks.contains("RESIST:4") || perks.contains("ALL"))) {
 					shop.setItem(
 							shop.firstEmpty(),
 							createItem("Resist 1", "LEATHER_CHESTPLATE",
@@ -215,14 +219,22 @@ public class MOCUtils {
 				if (perks.contains("RESIST:1")) {
 					shop.setItem(
 							shop.firstEmpty(),
-							createItem(ChatColor.RED + "Resist 2", "IRON_CHESTPLATE",
-									ChatColor.RED + "2nd tier required to purchase this perk", 4));
+							createItem(
+									ChatColor.RED + "Resist 2",
+									"IRON_CHESTPLATE",
+									ChatColor.RED
+											+ "2nd tier required to purchase this perk",
+									4));
 				}
 				if (perks.contains("SHEILD:1")) {
 					shop.setItem(
 							shop.firstEmpty(),
-							createItem(ChatColor.RED + "Sheild 2", "IRON_FENCE",
-									ChatColor.RED + "2nd tier required to purchase this perk", 4));
+							createItem(
+									ChatColor.RED + "Sheild 2",
+									"IRON_FENCE",
+									ChatColor.RED
+											+ "2nd tier required to purchase this perk",
+									4));
 				}
 			}
 		}
