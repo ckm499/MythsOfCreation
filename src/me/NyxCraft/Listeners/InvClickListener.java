@@ -30,7 +30,7 @@ public class InvClickListener implements Listener {
 			return;
 		}
 
-		if (e.getInventory().getName().contains("Shop")) {
+		if (e.getInventory().getName().contains("Perk Shop")) {
 			Integer pointamount = YamlConfiguration.loadConfiguration(
 					new File("plugins" + File.separator + "MythsOfCreation"
 							+ File.separator + "PlayerData" + File.separator

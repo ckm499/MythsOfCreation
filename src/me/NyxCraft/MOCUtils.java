@@ -185,7 +185,7 @@ public class MOCUtils {
 	}
 
 	public static void openShop(Player p) {
-		Inventory shop = Bukkit.createInventory(null, 9, "Shop");
+		Inventory shop = Bukkit.createInventory(null, 9, "Perk Shop");
 		List<String> perks = YamlConfiguration.loadConfiguration(
 				new File("plugins" + File.separator + "MythsOfCreation"
 						+ File.separator + "PlayerData" + File.separator
