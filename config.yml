@@ -42,4 +42,16 @@ Classes:
           - GOLD_INGOT 8
           - COAL 32
           - IRON_BLOCK 1
+    Artemis:
+        Perks:
+          - 
+        Kit:
+          - BOW 1
+          - DIAMOND_SWORD 1
+          - ARROWS 128
+          - ENDER_PEARL 5
+          - CHAINMAIL_BOOTS 1
+          - CHAINMAIL_LEGGINGS 1
+          - CHAINMAIL_CHESTPLATE 1
+          - CHAINMAIL_HELMET 1
     # placeholder for next class
