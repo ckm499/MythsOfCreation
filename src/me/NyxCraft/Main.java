@@ -9,11 +9,13 @@ import java.util.Set;
 import me.NyxCraft.Commands.ClassCommand;
 import me.NyxCraft.Commands.NyxPointsCommand;
 import me.NyxCraft.Commands.PerkCommands;
+import me.NyxCraft.Listeners.DamageListener;
 import me.NyxCraft.Listeners.InvClickListener;
 import me.NyxCraft.Listeners.ItemDropListener;
 import me.NyxCraft.Listeners.ItemPlaceListener;
 import me.NyxCraft.Listeners.JoinListener;
 import me.NyxCraft.Listeners.MobDeathListener;
+import me.NyxCraft.Listeners.PlayerDeathListener;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -36,6 +38,8 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ItemDropListener(), this);
 		getServer().getPluginManager().registerEvents(new ItemPlaceListener(), this);
 		getServer().getPluginManager().registerEvents(new MobDeathListener(), this);
+		getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
+		getServer().getPluginManager().registerEvents(new DamageListener(), this);
 		new NyxPointsCommand();
 		new ClassCommand();
 		new PerkCommands();

@@ -24,6 +24,11 @@ public class MobDeathListener implements Listener {
 								+ File.separator + "PlayerData"
 								+ File.separator + p.getUniqueId() + ".yml"))
 						.getInt("tier");
+				int mKills = YamlConfiguration.loadConfiguration(
+						new File("plugins" + File.separator + "MythsOfCreation"
+								+ File.separator + "PlayerData"
+								+ File.separator + p.getUniqueId() + ".yml"))
+						.getInt("aData.mKills");
 				if (e.getEntity().getType().getName().equals("Zombie")) {
 					p.sendMessage(ChatColor.GRAY
 							+ "You earned 1 nxp for killing a Zombie!");

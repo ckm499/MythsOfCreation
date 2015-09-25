@@ -25,6 +25,7 @@ public class JoinListener implements Listener {
 			temp.createSection("tier");
 			temp.createSection("perks");
 			temp.createSection("kitTime");
+			temp.createSection("aData");
 			temp.set("name", e.getPlayer().getDisplayName());
 			temp.set("class", "none");
 			temp.set("nxp", 0);

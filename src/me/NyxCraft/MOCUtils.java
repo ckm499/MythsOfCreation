@@ -253,4 +253,65 @@ public class MOCUtils {
 		temp.setItemMeta(meta);
 		return temp;
 	}
+	
+	public static int addKill(Player p){
+		YamlConfiguration temp = new YamlConfiguration();
+		try {
+			temp.load(new File("plugins" + File.separator + "MythsOfCreation"
+					+ File.separator + "PlayerData" + File.separator
+					+ p.getUniqueId() + ".yml"));
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		} catch (InvalidConfigurationException e2) {
+			e2.printStackTrace();
+		}
+		if (temp.get("aData.pKills") != null){
+			temp.set("aData.pKills", (1 + temp.getInt("aData.pKills")));
+		}
+		else {
+			temp.set("aData.pKills", 1);
+		}
+		try {
+			temp.save("plugins" + File.separator + "MythsOfCreation"
+					+ File.separator + "PlayerData" + File.separator
+					+ p.getUniqueId() + ".yml");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		return temp.getInt("aData.pKills");
+	}
+	
+	public static void addMKill(Player p){
+		YamlConfiguration temp = new YamlConfiguration();
+		try {
+			temp.load(new File("plugins" + File.separator + "MythsOfCreation"
+					+ File.separator + "PlayerData" + File.separator
+					+ p.getUniqueId() + ".yml"));
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		} catch (InvalidConfigurationException e2) {
+			e2.printStackTrace();
+		}
+		if (temp.get("aData.mKills") != null){
+			temp.set("aData.mKills", (1 + temp.getInt("aData.pKills")));
+		}
+		else {
+			temp.set("aData.mKills", 1);
+		}
+		try {
+			temp.save("plugins" + File.separator + "MythsOfCreation"
+					+ File.separator + "PlayerData" + File.separator
+					+ p.getUniqueId() + ".yml");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		if (temp.getInt("aData.mKills") >= 10)
+		{
+			checkAcheivement(p, "Monster Fighter", 2);
+		}
+	}
 }

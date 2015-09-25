@@ -56,17 +56,25 @@ public class PlayerDeathListener implements Listener{
 			{
 				reward = 100;
 			}
-			if (tier == 8)
-			{
-				return;
-			}
 			if (cl.equals("Ares"))
 			{
 				reward = (int) (reward * 1.5);
 			}
 			MOCUtils.addNxp(p, reward);
 			p.sendMessage(ChatColor.GRAY + "You have earned " + reward + " nxp for killing " + e.getEntity().getDisplayName() + "!");
-			MOCUtils.checkAcheivement(p, "Defeat another player", 2);
+			MOCUtils.checkAcheivement(p, "First Blood", 2);
+			if (MOCUtils.addKill(p) >= 10)
+			{
+				MOCUtils.checkAcheivement(p, "Savage", 2);
+			}
+			if (MOCUtils.addKill(p) >= 50)
+			{
+				MOCUtils.checkAcheivement(p, "Warrior", 2);
+			}
+			if (MOCUtils.addKill(p) >= 100)
+			{
+				MOCUtils.checkAcheivement(p, "One Man Army", 2);
+			}
 		}
 	}
 
